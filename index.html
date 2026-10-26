@@ -274,35 +274,87 @@
       max-width: 860px;
     }
 
-    .story-images {
+    /* ================================================= */
+    /* FOOD SHOWCASE LAYOUTS (PHOTO + MENU ITEMS)       */
+    /* ================================================= */
+    .menu-showcase-layout {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 20px;
-      margin-top: 32px;
+      grid-template-columns: 1fr 370px;
+      gap: 24px;
+      align-items: stretch;
     }
 
-    .story-images img {
-      width: 100%;
-      height: 300px;
-      object-fit: cover;
+    .menu-showcase-layout.reverse {
+      grid-template-columns: 370px 1fr;
+    }
+
+    .menu-photo-card {
+      position: relative;
       border-radius: var(--radius-md);
+      overflow: hidden;
       box-shadow: var(--shadow-sm);
+      background: #f0e6dc;
+      min-height: 340px;
+      display: flex;
+    }
+
+    .menu-photo-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.4s ease;
+    }
+
+    .menu-photo-card:hover img {
+      transform: scale(1.03);
+    }
+
+    .photo-badge {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 16px 18px;
+      background: linear-gradient(to top, rgba(30, 27, 24, 0.9) 0%, rgba(30, 27, 24, 0.45) 70%, transparent 100%);
+      color: #ffffff;
+      font-family: var(--font-ui);
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 10px;
+      pointer-events: none;
+    }
+
+    .photo-badge-title {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: #ffffff;
+      letter-spacing: 0.01em;
+    }
+
+    .photo-badge-tag {
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #f6c378;
     }
 
     /* ================================================= */
     /* 3. SIGNATURE SUBS                                 */
     /* ================================================= */
     .subs-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
     }
 
     .sub-item {
       background: #fcfaf8;
       border: 1px solid var(--border-light);
       border-radius: var(--radius-md);
-      padding: 22px 24px;
+      padding: 16px 20px;
       transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
     }
 
@@ -349,14 +401,14 @@
     /* ================================================= */
     .burgers-grid {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 16px;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
     }
 
     .burger-item {
       border: 1.5px solid var(--border-light);
       border-radius: var(--radius-md);
-      padding: 24px 20px;
+      padding: 20px 18px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
@@ -385,14 +437,14 @@
     .rolls-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 18px;
+      gap: 12px;
     }
 
     .roll-item {
       background: #fcfaf8;
       border: 1px solid var(--border-light);
       border-radius: var(--radius-md);
-      padding: 22px 24px;
+      padding: 16px 18px;
       transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
 
@@ -447,18 +499,27 @@
       font-family: var(--font-ui);
     }
 
-    .wings-gallery {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-      margin-top: 10px;
+    .wings-photo-wrap {
+      position: relative;
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+      margin-top: 12px;
+      height: 220px;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+      background: #2a180b;
+      display: flex;
     }
 
-    .wings-gallery img {
+    .wings-photo-wrap img {
       width: 100%;
-      height: 140px;
+      height: 100%;
       object-fit: cover;
-      border-radius: var(--radius-sm);
+      display: block;
+      transition: transform 0.4s ease;
+    }
+
+    .wings-photo-wrap:hover img {
+      transform: scale(1.03);
     }
 
     .sides-panel {
@@ -590,7 +651,29 @@
         min-height: 280px;
       }
 
+      .menu-showcase-layout,
+      .menu-showcase-layout.reverse {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+
+      .menu-photo-card {
+        order: -1;
+        min-height: 280px;
+        max-height: 340px;
+      }
+
+      .subs-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 14px;
+      }
+
       .burgers-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .rolls-grid {
         grid-template-columns: repeat(2, 1fr);
       }
 
@@ -624,12 +707,23 @@
         font-size: 1.85rem;
       }
 
+      .menu-photo-card {
+        min-height: 220px;
+        max-height: 260px;
+      }
+
       .subs-grid,
       .rolls-grid,
-      .story-images,
       .burgers-grid,
       .features-grid {
         grid-template-columns: 1fr;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .wings-photo-wrap {
+        height: 190px;
       }
 
       .btn {
@@ -683,13 +777,6 @@
         zero compromise on flavor.</p>
       <p class="story-text">From quick lunches to late-night cravings, we deliver crowd-favorite subs, burgers, bowls,
         and rolls straight to your door.</p>
-
-      <div class="story-images">
-        <img src="images/story-subs.png" alt="Signature toasted subs and loaded tots from The Fifth Monkey"
-          loading="lazy">
-        <img src="images/story-spread.png" alt="Full street food spread with burgers, kati rolls, and masala fries"
-          loading="lazy">
-      </div>
     </section>
 
     <!-- 3. SIGNATURE SUBS -->
@@ -699,51 +786,59 @@
       <p class="section-subtitle">Stuffed, stacked, and sauced to perfection. Our subs are the ultimate street-food
         comfort food mashup.</p>
 
-      <div class="subs-grid">
-        <article class="sub-item">
-          <div class="item-header">
-            <h3 class="item-name">🍗 Chicken-e-Kheema</h3>
-            <span class="item-price">$13</span>
-          </div>
-          <p class="item-desc">Juicy minced chicken simmered with aromatic spices, finished with fresh herbs in a
-            toasted sub roll.</p>
-        </article>
+      <div class="menu-showcase-layout">
+        <div class="subs-grid">
+          <article class="sub-item">
+            <div class="item-header">
+              <h3 class="item-name">🍗 Chicken-e-Kheema</h3>
+              <span class="item-price">$13</span>
+            </div>
+            <p class="item-desc">Juicy minced chicken simmered with aromatic spices, finished with fresh herbs in a
+              toasted sub roll.</p>
+          </article>
 
-        <article class="sub-item">
-          <div class="item-header">
-            <h3 class="item-name">🐑 Lamb-e-Kheema</h3>
-            <span class="item-price">$15</span>
-          </div>
-          <p class="item-desc">Rich slow-cooked minced lamb with bold spices for deep, savory flavor. Served in a crusty
-            roll.</p>
-        </article>
+          <article class="sub-item">
+            <div class="item-header">
+              <h3 class="item-name">🐑 Lamb-e-Kheema</h3>
+              <span class="item-price">$15</span>
+            </div>
+            <p class="item-desc">Rich slow-cooked minced lamb with bold spices for deep, savory flavor. Served in a
+              crusty
+              roll.</p>
+          </article>
 
-        <article class="sub-item">
-          <div class="item-header">
-            <h3 class="item-name">🥘 Butter Chicken</h3>
-            <span class="item-price">$13</span>
-          </div>
-          <p class="item-desc">Tender chicken in creamy, buttery tomato sauce with a touch of spice. Comfort food,
-            unlocked.</p>
-        </article>
+          <article class="sub-item">
+            <div class="item-header">
+              <h3 class="item-name">🥘 Butter Chicken</h3>
+              <span class="item-price">$13</span>
+            </div>
+            <p class="item-desc">Tender chicken in creamy, buttery tomato sauce with a touch of spice. Comfort food,
+              unlocked.</p>
+          </article>
 
-        <article class="sub-item">
-          <div class="item-header">
-            <h3 class="item-name">🥚 Sloppy Anda Masala</h3>
-            <span class="item-price">$14</span>
-          </div>
-          <p class="item-desc">Mumbai-style scrambled eggs with onions, tomatoes &amp; spices, tucked in a warm sub
-            roll.</p>
-        </article>
+          <article class="sub-item">
+            <div class="item-header">
+              <h3 class="item-name">🥚 Sloppy Anda Masala</h3>
+              <span class="item-price">$14</span>
+            </div>
+            <p class="item-desc">Mumbai-style scrambled eggs with onions, tomatoes &amp; spices, tucked in a warm sub
+              roll.</p>
+          </article>
 
-        <article class="sub-item">
-          <div class="item-header">
-            <h3 class="item-name">🌶️ Pilli Mirch Paneer <span class="pill-badge pill-vegan">Vegan</span></h3>
-            <span class="item-price">$13</span>
-          </div>
-          <p class="item-desc">Grilled cottage cheese in yellow pepper masala with crisp veggies and sauces inside a
-            toasted roll.</p>
-        </article>
+          <article class="sub-item">
+            <div class="item-header">
+              <h3 class="item-name">🌶️ Pilli Mirch Paneer <span class="pill-badge pill-vegan">Vegan</span></h3>
+              <span class="item-price">$13</span>
+            </div>
+            <p class="item-desc">Grilled cottage cheese in yellow pepper masala with crisp veggies and sauces inside a
+              toasted roll.</p>
+          </article>
+        </div>
+
+        <div class="menu-photo-card">
+          <img src="images/sub-kheema.jpg" alt="Signature toasted Chicken-e-Kheema Sub with garlic sauce and herbs"
+            loading="lazy">
+        </div>
       </div>
     </section>
 
@@ -752,40 +847,49 @@
       <span class="eyebrow">Booming Burgers and Bowls</span>
       <h2 class="section-title">Burgers &amp; Bowls</h2>
 
-      <div class="burgers-grid">
-        <article class="burger-item">
-          <div class="burger-top">
-            <h3 class="burger-title">Inferno Tikka Burger</h3>
-            <span class="item-price">$14</span>
-          </div>
-          <p class="item-desc">Ghost pepper heat meets tikka tenderness. Cooling drizzle keeps it just wild enough.</p>
-        </article>
+      <div class="menu-showcase-layout reverse">
+        <div class="menu-photo-card">
+          <img src="images/burger-fries.jpg"
+            alt="Crispy Crunch Burger with golden fries, mint chutney and garlic dipping sauces" loading="lazy">
+        </div>
 
-        <article class="burger-item">
-          <div class="burger-top">
-            <h3 class="burger-title">Classic Crunch Burger</h3>
-            <span class="item-price">$12</span>
-          </div>
-          <p class="item-desc">Crispy golden chicken, fresh tomato, lettuce, and creamy mayo. Timeless comfort every
-            bite.</p>
-        </article>
+        <div class="burgers-grid">
+          <article class="burger-item">
+            <div class="burger-top">
+              <h3 class="burger-title">Inferno Tikka Burger</h3>
+              <span class="item-price">$14</span>
+            </div>
+            <p class="item-desc">Ghost pepper heat meets tikka tenderness. Cooling drizzle keeps it just wild enough.
+            </p>
+          </article>
 
-        <article class="burger-item">
-          <div class="burger-top">
-            <h3 class="burger-title">Veg Royale Burger <span class="pill-badge pill-vegan">Vegan</span></h3>
-            <span class="item-price">$12</span>
-          </div>
-          <p class="item-desc">Spiced in-house veggie patty, cheese, crisp veggies, and our signature Monkey sauce.</p>
-        </article>
+          <article class="burger-item">
+            <div class="burger-top">
+              <h3 class="burger-title">Classic Crunch Burger</h3>
+              <span class="item-price">$12</span>
+            </div>
+            <p class="item-desc">Crispy golden chicken, fresh tomato, lettuce, and creamy mayo. Timeless comfort every
+              bite.</p>
+          </article>
 
-        <article class="burger-item">
-          <div class="burger-top">
-            <h3 class="burger-title">Punjab Original / Chennai Express Bowl</h3>
-            <span class="item-price">$14</span>
-          </div>
-          <p class="item-desc">Choice of protein over basmati rice with makhani sauce (Punjab Original) or Chettinad
-            sauce (Chennai Express), pico, roasted veggies, cashews, papad, and a drizzle of white sauce.</p>
-        </article>
+          <article class="burger-item">
+            <div class="burger-top">
+              <h3 class="burger-title">Veg Royale Burger <span class="pill-badge pill-vegan">Vegan</span></h3>
+              <span class="item-price">$12</span>
+            </div>
+            <p class="item-desc">Spiced in-house veggie patty, cheese, crisp veggies, and our signature Monkey sauce.
+            </p>
+          </article>
+
+          <article class="burger-item">
+            <div class="burger-top">
+              <h3 class="burger-title">Punjab Original / Chennai Express Bowl</h3>
+              <span class="item-price">$14</span>
+            </div>
+            <p class="item-desc">Choice of protein over basmati rice with makhani sauce (Punjab Original) or Chettinad
+              sauce (Chennai Express), pico, roasted veggies, cashews, papad, and a drizzle of white sauce.</p>
+          </article>
+        </div>
       </div>
     </section>
 
@@ -796,78 +900,89 @@
       <p class="section-subtitle">Every order comes with 2 rolls per serving: paratha-wrapped, chutney-drizzled, and
         flavor-filled!</p>
 
-      <div class="rolls-grid">
-        <article class="roll-item">
-          <div class="item-header">
-            <h3 class="item-name">🫓 Chicken Tikka Kati Roll</h3>
-            <span class="item-price">$15</span>
-          </div>
-          <p class="item-desc">Tender chicken marinated in tikka masala and grilled, with fresh toppings inside a
-            paratha.</p>
-        </article>
+      <div class="menu-showcase-layout">
+        <div class="rolls-grid">
+          <article class="roll-item">
+            <div class="item-header">
+              <h3 class="item-name">🫓 Chicken Tikka Kati Roll</h3>
+              <span class="item-price">$15</span>
+            </div>
+            <p class="item-desc">Tender chicken marinated in tikka masala and grilled, with fresh toppings inside a
+              paratha.</p>
+          </article>
 
-        <article class="roll-item">
-          <div class="item-header">
-            <h3 class="item-name">🫓 Chicken Keema Kati Roll</h3>
-            <span class="item-price">$15</span>
-          </div>
-          <p class="item-desc">Juicy minced chicken simmered in aromatic spices, wrapped in chutneys and pickled onions.
-          </p>
-        </article>
+          <article class="roll-item">
+            <div class="item-header">
+              <h3 class="item-name">🫓 Chicken Keema Kati Roll</h3>
+              <span class="item-price">$15</span>
+            </div>
+            <p class="item-desc">Juicy minced chicken simmered in aromatic spices, wrapped in chutneys and pickled
+              onions.
+            </p>
+          </article>
 
-        <article class="roll-item">
-          <div class="item-header">
-            <h3 class="item-name">🐑 Lamb Keema Kati Roll</h3>
-            <span class="item-price">$17</span>
-          </div>
-          <p class="item-desc">Rich minced lamb spiced to perfection, rolled with onions and cilantro for a hearty bite.
-          </p>
-        </article>
+          <article class="roll-item">
+            <div class="item-header">
+              <h3 class="item-name">🐑 Lamb Keema Kati Roll</h3>
+              <span class="item-price">$17</span>
+            </div>
+            <p class="item-desc">Rich minced lamb spiced to perfection, rolled with onions and cilantro for a hearty
+              bite.
+            </p>
+          </article>
 
-        <article class="roll-item">
-          <div class="item-header">
-            <h3 class="item-name">🥘 Channa Kati Roll <span class="pill-badge pill-vegan">Vegan</span></h3>
-            <span class="item-price">$14</span>
-          </div>
-          <p class="item-desc">Tangy masala chickpeas slow-cooked and rolled in a soft paratha. Plant-based powerhouse.
-          </p>
-        </article>
+          <article class="roll-item">
+            <div class="item-header">
+              <h3 class="item-name">🥘 Channa Kati Roll <span class="pill-badge pill-vegan">Vegan</span></h3>
+              <span class="item-price">$14</span>
+            </div>
+            <p class="item-desc">Tangy masala chickpeas slow-cooked and rolled in a soft paratha. Plant-based
+              powerhouse.
+            </p>
+          </article>
 
-        <article class="roll-item">
-          <div class="item-header">
-            <h3 class="item-name">🥚 Egg Kheema Kati Roll</h3>
-            <span class="item-price">$14</span>
-          </div>
-          <p class="item-desc">Fluffy scrambled eggs cooked with onions, tomatoes, and spices, tucked into a paratha.
-          </p>
-        </article>
+          <article class="roll-item">
+            <div class="item-header">
+              <h3 class="item-name">🥚 Egg Kheema Kati Roll</h3>
+              <span class="item-price">$14</span>
+            </div>
+            <p class="item-desc">Fluffy scrambled eggs cooked with onions, tomatoes, and spices, tucked into a paratha.
+            </p>
+          </article>
 
-        <article class="roll-item">
-          <div class="item-header">
-            <h3 class="item-name">🧀 Paneer Tikka Kati Roll <span class="pill-badge pill-vegan">Vegan</span></h3>
-            <span class="item-price">$14</span>
-          </div>
-          <p class="item-desc">Grilled paneer cubes marinated in tikka spices, served with fresh onions and mint
-            chutney.</p>
-        </article>
+          <article class="roll-item">
+            <div class="item-header">
+              <h3 class="item-name">🧀 Paneer Tikka Kati Roll <span class="pill-badge pill-vegan">Vegan</span></h3>
+              <span class="item-price">$14</span>
+            </div>
+            <p class="item-desc">Grilled paneer cubes marinated in tikka spices, served with fresh onions and mint
+              chutney.</p>
+          </article>
 
-        <article class="roll-item">
-          <div class="item-header">
-            <h3 class="item-name">🥔 Aloo Paneer Kati Roll <span class="pill-badge pill-vegan">Vegan</span></h3>
-            <span class="item-price">$14</span>
-          </div>
-          <p class="item-desc">Spiced potatoes and paneer wrapped in a flaky paratha, finished with chutneys and herbs.
-          </p>
-        </article>
+          <article class="roll-item">
+            <div class="item-header">
+              <h3 class="item-name">🥔 Aloo Paneer Kati Roll <span class="pill-badge pill-vegan">Vegan</span></h3>
+              <span class="item-price">$14</span>
+            </div>
+            <p class="item-desc">Spiced potatoes and paneer wrapped in a flaky paratha, finished with chutneys and
+              herbs.
+            </p>
+          </article>
 
-        <article class="roll-item">
-          <div class="item-header">
-            <h3 class="item-name">🥗 Manchurian Kati Roll <span class="pill-badge pill-vegan">Vegan</span></h3>
-            <span class="item-price">$15</span>
-          </div>
-          <p class="item-desc">Indo-Chinese favorite – crispy veggie balls in zesty Manchurian sauce wrapped in a
-            paratha.</p>
-        </article>
+          <article class="roll-item">
+            <div class="item-header">
+              <h3 class="item-name">🥗 Manchurian Kati Roll <span class="pill-badge pill-vegan">Vegan</span></h3>
+              <span class="item-price">$15</span>
+            </div>
+            <p class="item-desc">Indo-Chinese favorite – crispy veggie balls in zesty Manchurian sauce wrapped in a
+              paratha.</p>
+          </article>
+        </div>
+
+        <div class="menu-photo-card">
+          <img src="images/kati-rolls.jpg"
+            alt="Flaky paratha kati rolls wrapped in foil filled with flavorful spiced keema" loading="lazy">
+        </div>
       </div>
     </section>
 
@@ -898,9 +1013,9 @@
             </ul>
           </div>
 
-          <div class="wings-gallery">
-            <img src="images/spring-rolls.png" alt="Crispy spring rolls with sweet chili sauce" loading="lazy">
-            <img src="images/fries.png" alt="Basket of hot crispy fries with dipping sauce" loading="lazy">
+          <div class="wings-photo-wrap">
+            <img src="images/wings-chutney.jpg"
+              alt="Golden crispy wings drizzled with hot sauce and served with vibrant mint chutney" loading="lazy">
           </div>
         </div>
 
